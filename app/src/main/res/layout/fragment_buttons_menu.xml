@@ -1,0 +1,90 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_50">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ButtonsMenuActivityFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/menu_title"
+            android:textSize="25sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+
+        <Button
+            android:id="@+id/btn_popular_movies"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_100"
+            android:gravity="center"
+            android:text="@string/app_popular_movies"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_duo_scores"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_200"
+            android:text="@string/app_duo_scores"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_duo_library"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_300"
+            android:gravity="center"
+            android:text="@string/app_duo_library"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_build_bigger"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_400"
+            android:gravity="center"
+            android:text="@string/app_build_it_bigger"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_xyz_reader"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_500"
+            android:gravity="center"
+            android:text="@string/app_xyz_reader"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_capstone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/green_900"
+            android:gravity="center"
+            android:text="@string/app_capstone"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</ScrollView>
