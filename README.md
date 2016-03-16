@@ -2,4 +2,4 @@
 Android App to show portfolio of apps created for UDACITY nanodegree
 This app is intended to be integrated with other applications made by me so people interested could access quickly and easy to my work in motion.
 # License
-Project under [MIT Licence](https://opensource.org/licenses/MIT)
+Project under [MIT License](https://opensource.org/licenses/MIT)
