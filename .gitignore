@@ -1,7 +1,11 @@
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
 .DS_Store
 /build
 /captures
+.idea
+.irb-history
+App_Portfolio.iml
+app/src/androidTest/functionalTestReport.html
+test_servers
+app/app.iml

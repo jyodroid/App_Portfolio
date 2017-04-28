@@ -1,25 +1,67 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.jyo.android.appportfolio"
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 2
+        versionName "1.0 - tests beta"
     }
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        demo {
+            versionCode 1
+            versionName "1.0_DEMO"
+        }
+        original {
+            versionCode 16
+            versionName "1.0_tests beta"
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
 }
+
+task deleteOldServerInstance(type: Delete) {
+    delete fileTree(featuresDir) {
+        include '**/*.apk', '*.png', '*.html'
+    }
+}
+
+//Unblock mobile (if no security required) before running functional testing
+task wakeMobile(type: Exec) {
+    workingDir '.'
+    commandLine 'adb', 'shell', 'input', 'keyevent', 'KEYCODE_WAKEUP'
+}
+
+//Runs all functional tests under androidTest/features folder included annotated with @ignore
+task runFunctionalTests(type: Exec) {
+    workingDir featuresDir
+    print(apkDir)
+    commandLine 'calabash-android', 'run', apkDir, formatAndNameReportFlag, reportName, runConsoleFlag
+    doLast {
+        println("Your test results are in androidTest, " + reportName)
+    }
+}
+
+runFunctionalTests.group 'verification'
+runFunctionalTests.description 'Run ALL calabash functional tests on plugged in device.'
+runFunctionalTests.dependsOn deleteOldServerInstance
+runFunctionalTests.dependsOn assemble
+runFunctionalTests.dependsOn wakeMobile
