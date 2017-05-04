@@ -39,7 +39,7 @@ dependencies {
 }
 
 task deleteOldServerInstance(type: Delete) {
-    delete fileTree(featuresDir) {
+    delete fileTree("androidTest") {
         include '**/*.apk', '*.png', '*.html'
     }
 }
