@@ -54,10 +54,17 @@ task wakeMobile(type: Exec) {
 task runFunctionalTests(type: Exec) {
     workingDir featuresDir
     print(apkDir)
-    commandLine 'calabash-android', 'run', apkDir, formatAndNameReportFlag, reportName, runConsoleFlag
+    commandLine 'bundle','exec','calabash-android', 'run', apkDir, formatAndNameReportFlag, reportName, runConsoleFlag
     doLast {
         println("Your test results are in androidTest, " + reportName)
     }
+}
+
+//install all functional tests dependencies
+task installBundleDependencies(type: Exec) {
+    workingDir featuresDir
+    print(apkDir)
+    commandLine 'bundle','install'
 }
 
 runFunctionalTests.group 'verification'
@@ -65,3 +72,4 @@ runFunctionalTests.description 'Run ALL calabash functional tests on plugged in 
 runFunctionalTests.dependsOn deleteOldServerInstance
 runFunctionalTests.dependsOn assemble
 runFunctionalTests.dependsOn wakeMobile
+runFunctionalTests.dependsOn installBundleDependencies
