@@ -70,6 +70,5 @@ task installBundleDependencies(type: Exec) {
 runFunctionalTests.group 'verification'
 runFunctionalTests.description 'Run ALL calabash functional tests on plugged in device.'
 runFunctionalTests.dependsOn deleteOldServerInstance
-runFunctionalTests.dependsOn assemble
 runFunctionalTests.dependsOn wakeMobile
 runFunctionalTests.dependsOn installBundleDependencies
