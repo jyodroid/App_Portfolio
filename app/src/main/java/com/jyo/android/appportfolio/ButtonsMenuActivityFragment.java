@@ -1,20 +1,20 @@
 package com.jyo.android.appportfolio;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ButtonsMenuActivityFragment extends Fragment {
 
-    private static final String BASE_APP_MESSAGE = "This button will launch my ";
-    private static final String END_APP_MESSAGE = " app!";
+    public static final String BASE_APP_MESSAGE = "This button will launch my ";
+    public static final String END_APP_MESSAGE = " app!";
 
     public ButtonsMenuActivityFragment() {
     }
@@ -31,25 +31,23 @@ public class ButtonsMenuActivityFragment extends Fragment {
         Button btnXYZReader = (Button) rootView.findViewById(R.id.btn_xyz_reader);
         Button btnCapstone = (Button) rootView.findViewById(R.id.btn_capstone);
 
-        btnPopularMovies.setOnClickListener(onClickButtonListener("Popular Movies"));
-        btnDuoScores.setOnClickListener(onClickButtonListener("Football Scores"));
-        btnDuoLibrary.setOnClickListener(onClickButtonListener("Library"));
-        btnBuildItBigger.setOnClickListener(onClickButtonListener("Build it Bigger"));
-        btnXYZReader.setOnClickListener(onClickButtonListener("XYZ Reader"));
-        btnCapstone.setOnClickListener(onClickButtonListener("Capstone"));
+        btnPopularMovies.setOnClickListener(onClickButtonListener(getString(R.string.app_popular_movies)));
+        btnDuoScores.setOnClickListener(onClickButtonListener(getString(R.string.app_duo_scores)));
+        btnDuoLibrary.setOnClickListener(onClickButtonListener(getString(R.string.app_duo_library)));
+        btnBuildItBigger.setOnClickListener(onClickButtonListener(getString(R.string.app_build_it_bigger)));
+        btnXYZReader.setOnClickListener(onClickButtonListener(getString(R.string.app_xyz_reader)));
+        btnCapstone.setOnClickListener(onClickButtonListener(getString(R.string.app_capstone)));
 
         return rootView;
     }
 
-    public View.OnClickListener onClickButtonListener(final String appName){
+    public View.OnClickListener onClickButtonListener(final String appName) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast =  Toast.makeText(
-                        getActivity(),
-                        BASE_APP_MESSAGE + appName + END_APP_MESSAGE,
-                        Toast.LENGTH_LONG);
-                toast.show();
+                Snackbar.make(v,
+                        BASE_APP_MESSAGE + appName + END_APP_MESSAGE, Snackbar.LENGTH_LONG)
+                        .show();
             }
         };
     }
