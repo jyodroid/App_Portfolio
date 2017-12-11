@@ -41,6 +41,7 @@ jobs:
         gradle test
         gradle connectedAndroidTest
 
+
       - store_artifacts:
         path: app/build/reports
         destination: reports
