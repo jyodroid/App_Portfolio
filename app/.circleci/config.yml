@@ -28,12 +28,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       - run:
-        name: update sdk version
-        command: echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.2,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
-
-      - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: echo y | ./gradlew androidDependencies
 
       - save_cache:
           paths:
