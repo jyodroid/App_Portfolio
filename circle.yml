@@ -37,8 +37,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       # run tests!
-      - run:
-        gradle test
+#      - run:
+#        gradle test
 
       test:
         override:
