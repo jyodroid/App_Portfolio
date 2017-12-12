@@ -5,18 +5,21 @@ env:
     - ANDROID_TARGET=android-23
     - ANDROID_ABI=x86
 
+branches:
+  only:
+  - espresso_tests_travis_ci
+
 android:
   components:
   - tools
   - platform-tools
   - build-tools-25.0.1
-  - android-23
+  - android-25
   - extra-android-m2repository
   - extra-google-m2repository
   - sys-img-x86-android-23
 script:
-  - android list targets
-  - echo no | android create avd --force -n test -t android-23 --abi x86 --no-accel
+  - echo no | android create avd --force -n test -t android-25 --abi x86
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
