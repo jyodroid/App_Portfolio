@@ -32,14 +32,6 @@ jobs:
       - restore_cache:
           <<: *general_cache_key
 
-      - run:
-          name: Setup environment
-          command: scripts/ci_setup.sh
-
-      - run:
-          name: Initial build
-          command: scripts/ci_assemble.sh
-
       - store_artifacts:
           path: /opt/workspace/app/build/outputs/apk/
           destination: apks/
