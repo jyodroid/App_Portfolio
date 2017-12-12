@@ -1,5 +1,9 @@
 version: 2
 jobs:
+  branches:
+    only:
+      - espresso_test_circleci
+
   build:
     working_directory: ~/code
     docker:
