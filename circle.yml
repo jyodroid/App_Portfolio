@@ -1,9 +1,11 @@
 version: 2
-jobs:
+
+general:
   branches:
     only:
       - espresso_test_circleci
 
+jobs:
   build:
     working_directory: ~/code
     docker:
