@@ -6,8 +6,8 @@
     <!-- Courses/ Apps -->
     <string name="app_popular_movies" translatable = "false">Popular Movies</string>
     <string name="app_duo" translatable = "false">Super Duo</string>
-    <string name="app_duo_scores" translatable = "false">Football Scores App</string>
-    <string name="app_duo_library" translatable = "false">Library App</string>
+    <string name="app_duo_scores" translatable = "false">Football Scores</string>
+    <string name="app_duo_library" translatable = "false">Library</string>
     <string name="app_build_it_bigger" translatable = "false">Build It bigger</string>
     <string name="app_xyz_reader" translatable = "false">XYZ reader</string>
     <string name="app_capstone" translatable = "false">Capstone: my own project</string>
