@@ -29,7 +29,8 @@ jobs:
           #Automatic tests
       - run:
           name: Setup emulator
-          command: sdkmanager "system-images;android-27;google_apis_playstore;x86" && echo "no" | avdmanager create avd -n test -k "system-images;android-27;google_apis_playstore;x86"
+#          command: sdkmanager "system-images;android-27;google_apis_playstore;x86" && echo "no" | avdmanager create avd -n test -k "system-images;android-27;google_apis_playstore;x86"
+          command: sdkmanager --list
       - run:
           name: Launch emulator
           command: emulator -avd test -noaudio -no-boot-anim -no-window -accel on
