@@ -1,5 +1,5 @@
 language: android
-sudo: false
+sudo: true
 jdk:
   - oraclejdk8
 before_install:
@@ -16,13 +16,14 @@ env:
    - ANDROID_BUILD_TOOLS_VERSION=25.0.0
 #   - ANDROID_ABI=google_apis/armeabi-v7a
    - ANDROID_ABI=armeabi-v7a
-   - ADB_INSTALL_TIMEOUT=5 # minutes (2 minutes by default)
+   - ADB_INSTALL_TIMEOUT=15 # minutes (2 minutes by default)
+   - GRADLE_OPTS="-Xmx512m"
+   - ANDROID_TAG=google_apis
 
 android:
   components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
-    - tools
     - tools
     - platform-tools
 
@@ -38,6 +39,8 @@ android:
     - add-on
     - extra-google-m2repository
     - extra-android-m2repository
+
+    - addon-$ANDROID_TAG-google-$ANDROID_API_LEVEL
 
     # Google Play Services
     - extra-google-google_play_services
@@ -55,13 +58,20 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-before_script:
-#  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
-  - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+#before_script:
+##  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
+#  - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
+#  - emulator -avd test -no-audio -no-window &
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82 &
+
+script:
+  - ./gradlew build
+  - ./gradlew build
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - ./gradlew assembleRelease
 
 #  Apparently there was another change in mid-2016 that causes this same problem. For example, here's a failed build with the same error message.
 # https://travis-ci.org/barbeau/android-maps-utils/builds/134484281
 # https://stackoverflow.com/questions/28751111/invalid-abi-armeabi-v7a-for-the-selected-target-with-google-apis
+# newest versions problems https://github.com/OneBusAway/onebusaway-android/issues/720#issuecomment-263402921
