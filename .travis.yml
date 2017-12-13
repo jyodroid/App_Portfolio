@@ -12,15 +12,17 @@ branches:
 env:
   global:
    - ANDROID_API_LEVEL=25
-   - EMULATOR_API_LEVEL=25
+   - ANDROID_TAG=google_apis
    - ANDROID_BUILD_TOOLS_VERSION=25.0.0
-   - ANDROID_ABI=google_apis/armeabi-v7a
+#   - ANDROID_ABI=google_apis/armeabi-v7a
+   - ANDROID_ABI=armeabi-v7a
    - ADB_INSTALL_TIMEOUT=5 # minutes (2 minutes by default)
 
 android:
   components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
+    - tools
     - tools
     - platform-tools
 
@@ -30,7 +32,6 @@ android:
 
     # The SDK version used to compile your project
     - android-$ANDROID_API_LEVEL
-    - android-$EMULATOR_API_LEVEL
 
     # Additional components
     - extra
@@ -43,19 +44,24 @@ android:
 
     # Support library
     - extra-android-support
-
     - addon-google_apis-google-$ANDROID_API_LEVEL
-    - addon-google_apis-google-$EMULATOR_API_LEVEL
+#    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
 
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+    - sys-img-armeabi-v7a-google_apis-23
+    - sys-img-armeabi-v7a-google_apis-23
+
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
 before_script:
-  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
+#  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+
+#  Apparently there was another change in mid-2016 that causes this same problem. For example, here's a failed build with the same error message.
+# https://travis-ci.org/barbeau/android-maps-utils/builds/134484281
+# https://stackoverflow.com/questions/28751111/invalid-abi-armeabi-v7a-for-the-selected-target-with-google-apis
