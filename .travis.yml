@@ -67,8 +67,6 @@ android:
 
 script:
   - ./gradlew build
-  - ./gradlew build
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - ./gradlew assembleRelease
 
 #  Apparently there was another change in mid-2016 that causes this same problem. For example, here's a failed build with the same error message.
