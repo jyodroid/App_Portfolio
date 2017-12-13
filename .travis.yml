@@ -67,7 +67,8 @@ android:
 
 script:
   - ./gradlew build
-  - ./gradlew assembleRelease
+#  - ./gradlew assembleRelease
+  - ./gradlew connectedCheck
 
 #  Apparently there was another change in mid-2016 that causes this same problem. For example, here's a failed build with the same error message.
 # https://travis-ci.org/barbeau/android-maps-utils/builds/134484281
